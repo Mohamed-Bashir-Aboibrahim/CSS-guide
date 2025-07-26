@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete CSS Reference Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #d4a017; /* Changed to golden yellow */
+            --primary-dark: #b78c14;
+            --secondary: #f6c85f;
+            --accent: #e9b949;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border: #e2e8f0;
+            --card-bg: #ffffff;
+            --sidebar-width: 280px;
+            --header-height: 70px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-top: var(--header-height);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-box {
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 8px 15px;
+            width: 300px;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: white;
+            width: 100%;
+            font-size: 1rem;
+            padding: 5px 10px;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 30px;
+            padding: 2rem;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: calc(var(--header-height) + 2rem);
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 12px;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .sidebar a:hover, .sidebar a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .sidebar a i {
+            width: 24px;
+            text-align: center;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .category {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .category-header i {
+            font-size: 2rem;
+            color: var(--primary);
+            background: rgba(212, 160, 23, 0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .category-header h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .elements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .element-card {
+            background: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .element-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .element-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .element-header i {
+            font-size: 1.2rem;
+        }
+
+        .element-body {
+            padding: 20px;
+        }
+
+        .element-desc {
+            margin-bottom: 15px;
+            color: var(--gray);
+        }
+
+        .explanation {
+            background: rgba(212, 160, 23, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 12px 15px;
+            border-radius: 0 5px 5px 0;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        .code-block {
+            background: var(--dark);
+            color: white;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .selector {
+            color: #f97316;
+        }
+
+        .property {
+            color: #22d3ee;
+        }
+
+        .value {
+            color: #a78bfa;
+        }
+
+        .comment {
+            color: #94a3b8;
+        }
+
+        .example-preview {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .attributes {
+            margin: 15px 0;
+        }
+
+        .attributes h4 {
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .attr-list {
+            list-style: none;
+            padding-left: 15px;
+        }
+
+        .attr-list li {
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .attr-list li::before {
+            content: "•";
+            color: var(--success);
+            position: absolute;
+            left: -15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            margin-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 0;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            header {
+                height: auto;
+                padding: 15px;
+            }
+            
+            body {
+                padding-top: 130px;
+            }
+        }
+
+        /* Example styles for demonstration */
+        .example-box {
+            width: 100px;
+            height: 100px;
+            background-color: var(--primary);
+            margin: 10px 0;
+        }
+
+        .example-text {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: var(--dark);
+        }
+
+        .flex-example {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .flex-item {
+            background: var(--primary);
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .grid-example {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .grid-item {
+            background: var(--primary);
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fab fa-css3-alt"></i>
+                <span>CSS Reference</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search CSS properties..." id="search-input">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>CSS Categories</h2>
+            <ul>
+                <li><a href="#intro"><i class="fas fa-home"></i> Introduction</a></li>
+                <li><a href="#selectors"><i class="fas fa-mouse-pointer"></i> Selectors</a></li>
+                <li><a href="#box-model"><i class="fas fa-square"></i> Box Model</a></li>
+                <li><a href="#typography"><i class="fas fa-font"></i> Typography</a></li>
+                <li><a href="#layout"><i class="fas fa-th"></i> Layout</a></li>
+                <li><a href="#backgrounds"><i class="fas fa-image"></i> Backgrounds</a></li>
+                <li><a href="#transforms"><i class="fas fa-arrows-alt"></i> Transforms & Transitions</a></li>
+                <li><a href="#animations"><i class="fas fa-film"></i> Animations</a></li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <section id="selectors" class="category">
+                <div class="category-header">
+                    <i class="fas fa-mouse-pointer"></i>
+                    <h2>Selectors</h2>
+                </div>
+                
+                <div class="elements-grid">
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-code"></i>
+                            Element Selector
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Selects elements based on the element name.</div>
+                            
+                            <div class="explanation">
+                                The element selector selects HTML elements based on the element name. You can select all elements of a specific type on a page with this selector.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">p</span> {<br>
+                                &nbsp;&nbsp;<span class="property">color</span>: <span class="value">red</span>;<br>
+                                }
+                            </div>
+                            <div class="example-preview">
+                                <p style="color: red;">This paragraph will be red.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-code"></i>
+                            Class Selector
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Selects elements with a specific class attribute.</div>
+                            
+                            <div class="explanation">
+                                The class selector selects elements with a specific class attribute. To select elements with a specific class, write a period (.) character, followed by the class name.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">.highlight</span> {<br>
+                                &nbsp;&nbsp;<span class="property">background-color</span>: <span class="value">yellow</span>;<br>
+                                }
+                            </div>
+                            <div class="example-preview">
+                                <p class="highlight" style="background-color: yellow;">This text is highlighted.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-code"></i>
+                            ID Selector
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Selects a single element with a specific id attribute.</div>
+                            
+                            <div class="explanation">
+                                The id selector uses the id attribute of an HTML element to select a specific element. The id of an element should be unique within a page, so the id selector is used to select one unique element.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">#header</span> {<br>
+                                &nbsp;&nbsp;<span class="property">font-size</span>: <span class="value">2rem</span>;<br>
+                                &nbsp;&nbsp;<span class="property">color</span>: <span class="value">blue</span>;<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-code"></i>
+                            Attribute Selector
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Selects elements based on an attribute or attribute value.</div>
+                            
+                            <div class="explanation">
+                                The attribute selector is used to select elements with a specified attribute. You can also specify a value to match against the attribute's value.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="comment">/* Selects all elements with a target attribute */</span><br>
+                                <span class="selector">[target]</span> {<br>
+                                &nbsp;&nbsp;<span class="property">border</span>: <span class="value">1px solid black</span>;<br>
+                                }<br><br>
+                                <span class="comment">/* Selects all elements with target="_blank" */</span><br>
+                                <span class="selector">[target="_blank"]</span> {<br>
+                                &nbsp;&nbsp;<span class="property">background-color</span>: <span class="value">yellow</span>;<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="box-model" class="category">
+                <div class="category-header">
+                    <i class="fas fa-square"></i>
+                    <h2>Box Model</h2>
+                </div>
+                
+                <div class="elements-grid">
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-vector-square"></i>
+                            width & height
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Sets the width and height of an element.</div>
+                            
+                            <div class="explanation">
+                                The width and height properties are used to set the width and height of an element. The width and height properties do not include padding, borders, or margins.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">div</span> {<br>
+                                &nbsp;&nbsp;<span class="property">width</span>: <span class="value">300px</span>;<br>
+                                &nbsp;&nbsp;<span class="property">height</span>: <span class="value">200px</span>;<br>
+                                }
+                            </div>
+                            <div class="example-preview">
+                                <div style="width: 100%; height: 50px; background-color: var(--primary);"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-border-style"></i>
+                            margin & padding
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Sets the margin and padding space around elements.</div>
+                            
+                            <div class="explanation">
+                                The margin property sets the margin space around an element. The padding property sets the padding space inside the border of an element. Both properties can have 1-4 values for different sides.
+                            </div>
+                            
+                            <div class="attributes">
+                                <h4>Shorthand Values:</h4>
+                                <ul class="attr-list">
+                                    <li><strong>1 value</strong> - Applies to all four sides</li>
+                                    <li><strong>2 values</strong> - First for top/bottom, second for left/right</li>
+                                    <li><strong>3 values</strong> - First for top, second for left/right, third for bottom</li>
+                                    <li><strong>4 values</strong> - Top, right, bottom, left (clockwise)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">div</span> {<br>
+                                &nbsp;&nbsp;<span class="property">margin</span>: <span class="value">10px 20px</span>; <span class="comment">/* top/bottom left/right */</span><br>
+                                &nbsp;&nbsp;<span class="property">padding</span>: <span class="value">15px</span>; <span class="comment">/* all sides */</span><br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-border-all"></i>
+                            border
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Sets the border properties for an element.</div>
+                            
+                            <div class="explanation">
+                                The border property is a shorthand property for border-width, border-style, and border-color. You can also set these properties individually for more control.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">div</span> {<br>
+                                &nbsp;&nbsp;<span class="property">border</span>: <span class="value">2px solid #d4a017</span>;<br>
+                                }<br><br>
+                                <span class="comment">/* Individual properties */</span><br>
+                                <span class="selector">div</span> {<br>
+                                &nbsp;&nbsp;<span class="property">border-width</span>: <span class="value">2px</span>;<br>
+                                &nbsp;&nbsp;<span class="property">border-style</span>: <span class="value">dashed</span>;<br>
+                                &nbsp;&nbsp;<span class="property">border-color</span>: <span class="value">red</span>;<br>
+                                }
+                            </div>
+                            <div class="example-preview">
+                                <div style="border: 2px solid var(--primary); padding: 10px; margin-bottom: 10px;">Solid border</div>
+                                <div style="border: 2px dashed var(--primary); padding: 10px;">Dashed border</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-crop-alt"></i>
+                            box-sizing
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Defines how the width and height of an element are calculated.</div>
+                            
+                            <div class="explanation">
+                                The box-sizing property defines how the width and height of an element are calculated: should they include padding and borders, or not.
+                            </div>
+                            
+                            <div class="attributes">
+                                <h4>Values:</h4>
+                                <ul class="attr-list">
+                                    <li><strong>content-box</strong> - Default. Width/height only includes content</li>
+                                    <li><strong>border-box</strong> - Width/height includes content, padding and border</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">div</span> {<br>
+                                &nbsp;&nbsp;<span class="property">box-sizing</span>: <span class="value">border-box</span>;<br>
+                                &nbsp;&nbsp;<span class="property">width</span>: <span class="value">300px</span>;<br>
+                                &nbsp;&nbsp;<span class="property">padding</span>: <span class="value">20px</span>;<br>
+                                &nbsp;&nbsp;<span class="property">border</span>: <span class="value">5px solid black</span>;<br>
+                                <span class="comment">/* Total width remains 300px */</span><br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="typography" class="category">
+                <div class="category-header">
+                    <i class="fas fa-font"></i>
+                    <h2>Typography</h2>
+                </div>
+                
+                <div class="elements-grid">
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-text-height"></i>
+                            font-family
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Specifies the font for an element.</div>
+                            
+                            <div class="explanation">
+                                The font-family property specifies the font for an element. The property can hold several font names as a "fallback" system. If the browser does not support the first font, it tries the next font.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">body</span> {<br>
+                                &nbsp;&nbsp;<span class="property">font-family</span>: <span class="value">"Arial", "Helvetica", sans-serif</span>;<br>
+                                }
+                            </div>
+                            <div class="example-preview">
+                                <p style="font-family: 'Arial', sans-serif;">This text is in Arial font.</p>
+                                <p style="font-family: 'Times New Roman', serif;">This text is in Times New Roman.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-bold"></i>
+                            font-weight
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Sets the weight (boldness) of the font.</div>
+                            
+                            <div class="explanation">
+                                The font-weight property sets how thick or thin characters in text should be displayed. It can be specified as a keyword (normal, bold) or a numeric value (100-900).
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">.bold-text</span> {<br>
+                                &nbsp;&nbsp;<span class="property">font-weight</span>: <span class="value">bold</span>;<br>
+                                }<br><br>
+                                <span class="selector">.light-text</span> {<br>
+                                &nbsp;&nbsp;<span class="property">font-weight</span>: <span class="value">300</span>;<br>
+                                }
+                            </div>
+                            <div class="example-preview">
+                                <p style="font-weight: normal;">Normal text</p>
+                                <p style="font-weight: bold;">Bold text</p>
+                                <p style="font-weight: 300;">Light text</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-text-width"></i>
+                            text-align
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Specifies the horizontal alignment of text.</div>
+                            
+                            <div class="explanation">
+                                The text-align property specifies the horizontal alignment of text in an element. It can align text to the left, right, center, or justify it.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">.center</span> {<br>
+                                &nbsp;&nbsp;<span class="property">text-align</span>: <span class="value">center</span>;<br>
+                                }<br><br>
+                                <span class="selector">.right</span> {<br>
+                                &nbsp;&nbsp;<span class="property">text-align</span>: <span class="value">right</span>;<br>
+                                }
+                            </div>
+                            <div class="example-preview">
+                                <p style="text-align: left;">Left aligned text</p>
+                                <p style="text-align: center;">Centered text</p>
+                                <p style="text-align: right;">Right aligned text</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-text-width"></i>
+                            line-height
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Sets the height of a line box.</div>
+                            
+                            <div class="explanation">
+                                The line-height property specifies the height of a line. It's commonly used to set the distance between lines of text. A unitless value is recommended as it's relative to the current font size.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">p</span> {<br>
+                                &nbsp;&nbsp;<span class="property">line-height</span>: <span class="value">1.5</span>;<br>
+                                }
+                            </div>
+                            <div class="example-preview">
+                                <p style="line-height: 1;">Tight line height (1)</p>
+                                <p style="line-height: 1.5;">Standard line height (1.5)</p>
+                                <p style="line-height: 2;">Loose line height (2)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="layout" class="category">
+                <div class="category-header">
+                    <i class="fas fa-th"></i>
+                    <h2>Layout</h2>
+                </div>
+                
+                <div class="elements-grid">
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-boxes"></i>
+                            display
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Specifies the display behavior of an element.</div>
+                            
+                            <div class="explanation">
+                                The display property specifies the display behavior (the type of rendering box) of an element. In HTML, the default display property value is taken from the HTML specifications or from the browser/user default style sheet.
+                            </div>
+                            
+                            <div class="attributes">
+                                <h4>Common Values:</h4>
+                                <ul class="attr-list">
+                                    <li><strong>block</strong> - Displays as a block element</li>
+                                    <li><strong>inline</strong> - Displays as an inline element</li>
+                                    <li><strong>inline-block</strong> - Displays as inline but with block properties</li>
+                                    <li><strong>flex</strong> - Displays as a block-level flex container</li>
+                                    <li><strong>grid</strong> - Displays as a block-level grid container</li>
+                                    <li><strong>none</strong> - Element is not displayed</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">.inline-block</span> {<br>
+                                &nbsp;&nbsp;<span class="property">display</span>: <span class="value">inline-block</span>;<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-boxes"></i>
+                            position
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Specifies the type of positioning method used for an element.</div>
+                            
+                            <div class="explanation">
+                                The position property specifies the type of positioning method used for an element (static, relative, absolute, fixed, or sticky).
+                            </div>
+                            
+                            <div class="attributes">
+                                <h4>Values:</h4>
+                                <ul class="attr-list">
+                                    <li><strong>static</strong> - Default. Elements render in order</li>
+                                    <li><strong>relative</strong> - Positioned relative to normal position</li>
+                                    <li><strong>absolute</strong> - Positioned relative to nearest positioned ancestor</li>
+                                    <li><strong>fixed</strong> - Positioned relative to viewport</li>
+                                    <li><strong>sticky</strong> - Toggles between relative and fixed</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">.fixed-header</span> {<br>
+                                &nbsp;&nbsp;<span class="property">position</span>: <span class="value">fixed</span>;<br>
+                                &nbsp;&nbsp;<span class="property">top</span>: <span class="value">0</span>;<br>
+                                &nbsp;&nbsp;<span class="property">width</span>: <span class="value">100%</span>;<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-boxes"></i>
+                            flexbox
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Provides an efficient way to layout, align and distribute space among items.</div>
+                            
+                            <div class="explanation">
+                                Flexbox is a layout mode that provides an efficient way to lay out, align and distribute space among items in a container, even when their size is unknown or dynamic.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">.container</span> {<br>
+                                &nbsp;&nbsp;<span class="property">display</span>: <span class="value">flex</span>;<br>
+                                &nbsp;&nbsp;<span class="property">justify-content</span>: <span class="value">space-between</span>;<br>
+                                &nbsp;&nbsp;<span class="property">align-items</span>: <span class="value">center</span>;<br>
+                                }
+                            </div>
+                            <div class="example-preview">
+                                <div class="flex-example">
+                                    <div class="flex-item">Item 1</div>
+                                    <div class="flex-item">Item 2</div>
+                                    <div class="flex-item">Item 3</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-boxes"></i>
+                            grid
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Creates grid-based layouts with rows and columns.</div>
+                            
+                            <div class="explanation">
+                                CSS Grid Layout excels at dividing a page into major regions or defining the relationship in terms of size, position, and layer, between parts of a control built from HTML primitives.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">.container</span> {<br>
+                                &nbsp;&nbsp;<span class="property">display</span>: <span class="value">grid</span>;<br>
+                                &nbsp;&nbsp;<span class="property">grid-template-columns</span>: <span class="value">repeat(3, 1fr)</span>;<br>
+                                &nbsp;&nbsp;<span class="property">gap</span>: <span class="value">10px</span>;<br>
+                                }
+                            </div>
+                            <div class="example-preview">
+                                <div class="grid-example">
+                                    <div class="grid-item">1</div>
+                                    <div class="grid-item">2</div>
+                                    <div class="grid-item">3</div>
+                                    <div class="grid-item">4</div>
+                                    <div class="grid-item">5</div>
+                                    <div class="grid-item">6</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="backgrounds" class="category">
+                <div class="category-header">
+                    <i class="fas fa-image"></i>
+                    <h2>Backgrounds</h2>
+                </div>
+                
+                <div class="elements-grid">
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-fill-drip"></i>
+                            background-color
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Sets the background color of an element.</div>
+                            
+                            <div class="explanation">
+                                The background-color property sets the background color of an element. The background of an element is the total size of the element, including padding and border (but not the margin).
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">body</span> {<br>
+                                &nbsp;&nbsp;<span class="property">background-color</span>: <span class="value">#f0f0f0</span>;<br>
+                                }
+                            </div>
+                            <div class="example-preview">
+                                <div style="background-color: var(--primary); color: white; padding: 10px;">Element with background color</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-image"></i>
+                            background-image
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Sets one or more background images for an element.</div>
+                            
+                            <div class="explanation">
+                                The background-image property sets one or more background images for an element. By default, a background-image is placed at the top-left corner of an element, and repeated both vertically and horizontally.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">.hero</span> {<br>
+                                &nbsp;&nbsp;<span class="property">background-image</span>: <span class="value">url("hero.jpg")</span>;<br>
+                                &nbsp;&nbsp;<span class="property">background-size</span>: <span class="value">cover</span>;<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-sliders-h"></i>
+                            background
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Shorthand property for all background properties.</div>
+                            
+                            <div class="explanation">
+                                The background property is a shorthand property for setting all background style properties at once, such as color, image, origin and size, or repeat method.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">body</span> {<br>
+                                &nbsp;&nbsp;<span class="property">background</span>: <span class="value">#f0f0f0 url("bg.png") no-repeat center center</span>;<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="transforms" class="category">
+                <div class="category-header">
+                    <i class="fas fa-arrows-alt"></i>
+                    <h2>Transforms & Transitions</h2>
+                </div>
+                
+                <div class="elements-grid">
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-arrows-alt"></i>
+                            transform
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Applies 2D or 3D transformations to an element.</div>
+                            
+                            <div class="explanation">
+                                The transform property applies a 2D or 3D transformation to an element. This property allows you to rotate, scale, move, skew, etc., elements.
+                            </div>
+                            
+                            <div class="attributes">
+                                <h4>Common Functions:</h4>
+                                <ul class="attr-list">
+                                    <li><strong>rotate()</strong> - Rotates an element</li>
+                                    <li><strong>scale()</strong> - Changes the size of an element</li>
+                                    <li><strong>translate()</strong> - Moves an element</li>
+                                    <li><strong>skew()</strong> - Skews an element</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">.box</span> {<br>
+                                &nbsp;&nbsp;<span class="property">transform</span>: <span class="value">rotate(45deg) scale(1.2)</span>;<br>
+                                }
+                            </div>
+                            <div class="example-preview">
+                                <div style="width: 50px; height: 50px; background-color: var(--primary); transform: rotate(45deg); margin: 20px auto;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-exchange-alt"></i>
+                            transition
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Creates smooth transitions between property changes.</div>
+                            
+                            <div class="explanation">
+                                The transition property is a shorthand property for transition-property, transition-duration, transition-timing-function, and transition-delay. It allows you to define the transition between two states of an element.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">.box</span> {<br>
+                                &nbsp;&nbsp;<span class="property">transition</span>: <span class="value">all 0.3s ease</span>;<br>
+                                }<br><br>
+                                <span class="selector">.box:hover</span> {<br>
+                                &nbsp;&nbsp;<span class="property">transform</span>: <span class="value">scale(1.1)</span>;<br>
+                                }
+                            </div>
+                            <div class="example-preview">
+                                <div style="width: 50px; height: 50px; background-color: var(--primary); transition: all 0.3s ease; margin: 20px auto;"></div>
+                                <p style="text-align: center;">Hover over the box to see transition</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="animations" class="category">
+                <div class="category-header">
+                    <i class="fas fa-film"></i>
+                    <h2>Animations</h2>
+                </div>
+                
+                <div class="elements-grid">
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-film"></i>
+                            @keyframes
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Specifies the animation code.</div>
+                            
+                            <div class="explanation">
+                                The @keyframes rule specifies the animation code. The animation is created by gradually changing from one set of CSS styles to another. During the animation, you can change the set of CSS styles many times.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">@keyframes example</span> {<br>
+                                &nbsp;&nbsp;<span class="value">from</span> { <span class="property">background-color</span>: <span class="value">red</span>; }<br>
+                                &nbsp;&nbsp;<span class="value">to</span> { <span class="property">background-color</span>: <span class="value">yellow</span>; }<br>
+                                }<br><br>
+                                <span class="selector">div</span> {<br>
+                                &nbsp;&nbsp;<span class="property">animation</span>: <span class="value">example 4s infinite</span>;<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="element-card">
+                        <div class="element-header">
+                            <i class="fas fa-film"></i>
+                            animation
+                        </div>
+                        <div class="element-body">
+                            <div class="element-desc">Shorthand property for animation properties.</div>
+                            
+                            <div class="explanation">
+                                The animation property is a shorthand property for animation-name, animation-duration, animation-timing-function, animation-delay, animation-iteration-count, animation-direction, animation-fill-mode, and animation-play-state.
+                            </div>
+                            
+                            <div class="code-block">
+                                <span class="selector">div</span> {<br>
+                                &nbsp;&nbsp;<span class="property">animation</span>: <span class="value">slidein 3s ease-in-out 1s infinite alternate</span>;<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        window.addEventListener('scroll', function() {
+            const categories = document.querySelectorAll('.category');
+            const sidebarLinks = document.querySelectorAll('.sidebar a');
+            let currentSection = '';
+            
+            categories.forEach(category => {
+                const categoryTop = category.offsetTop;
+                const categoryHeight = category.clientHeight;
+                
+                if (window.scrollY >= (categoryTop - 200)) {
+                    currentSection = category.id;
+                }
+            });
+            
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        document.querySelector('.sidebar a[href="#selectors"]').classList.add('active');
+        
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            const elementCards = document.querySelectorAll('.element-card');
+            const categories = document.querySelectorAll('.category');
+            
+            elementCards.forEach(card => {
+                card.style.display = 'none';
+            });
+            
+            categories.forEach(category => {
+                const categoryCards = category.querySelectorAll('.element-card');
+                let hasVisible = false;
+                
+                categoryCards.forEach(card => {
+                    const elementName = card.querySelector('.element-header').textContent.toLowerCase();
+                    const elementDesc = card.querySelector('.element-desc').textContent.toLowerCase();
+                    const explanation = card.querySelector('.explanation') ? card.querySelector('.explanation').textContent.toLowerCase() : '';
+                    
+                    if (elementName.includes(searchTerm) || elementDesc.includes(searchTerm) || explanation.includes(searchTerm)) {
+                        card.style.display = 'block';
+                        hasVisible = true;
+                    }
+                });
+                category.style.display = hasVisible ? 'block' : 'none';
+            });
+            if (searchTerm === '') {
+                categories.forEach(category => {
+                    category.style.display = 'block';
+                });
+                elementCards.forEach(card => {
+                    card.style.display = 'block';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
